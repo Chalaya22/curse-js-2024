@@ -167,9 +167,118 @@
  *
  * @param {Object} obj
  * @returns bmi
- */
-function calcBMI({ weight, height }) {
-  const bmi = Number((weight / height) * 2).toFixed(1);
-  return bmi;
+//  */
+// function calcBMI({ weight, height }) {
+//   const bmi = Number((weight / height) * 2).toFixed(1);
+//   return bmi;
+// }
+// console.log(calcBMI({ weight: 65, height: 1.8 })); //72.2
+
+//_____________________________________________________________________
+//Exempl 2 Вивести лист контактів
+// function contactList({ name, phone }) {
+//   const nameList = name.split(',');
+//   const phoneList = phone.split(',');
+//   console.log(nameList); //['Olga, Irina, Sveta, Tanya']
+//   console.log(phoneList); //['0672352060, 0672352070, 0672352080, 0672352090']
+//   for (let i = 0; i < nameList.length; i += 1) {
+//     console.log(`${nameList[i]} : ${phoneList[i]}`); // Olga : 0672352060,  Irina :  0672352070,  Sveta :  0672352080,  Tanya :  0672352090
+//   }
+// }
+// contactList({
+//   name: 'Olga, Irina, Sveta, Tanya',
+//   phone: '0672352060, 0672352070, 0672352080, 0672352090',
+// });
+//_____________________________________________________________________
+//Exempl 3
+// function getBotsReport({ companyName, repairBots, defenceBots }) {
+//   return `${companyName} has ${repairBots + defenceBots} in stock`;
+// }
+// console.log(
+//   getBotsReport({
+//     companyName: 'Alex',
+//     repairBots: 150,
+//     defenceBots: 50,
+//   })
+// );
+//_____________________________________________________________________
+//Exempl 3
+//Для підрахунку чогось використовуємо цил for of з Object.values()
+// function getBotsReport({ companyName, stock }) {
+//   let total = 0;
+//   for (const value of Object.values(stock)) {
+//     total += value;
+//   }
+
+//   return `${companyName} has ${total} pices in stock`;
+// }
+// console.log(
+//   getBotsReport({
+//     companyName: 'Alexis',
+//     stock: {
+//       repearBots: 100,
+//       defenceBots: 200,
+//     },
+//   })
+// ); //Alexis has 300 pices in stock
+// console.log(
+//   getBotsReport({
+//     companyName: 'Miraj',
+//     stock: {
+//       boots: 100,
+//       adidas: 600,
+//       lacosta: 45,
+//     },
+//   })
+// ); //Miraj has 745 pices in stock
+
+//_____________________________________________________________________
+//Exempl 4
+// Розпарсити обєкт, та  повертаємо новий обєкт з додатковими ключами  id,
+// createAt та задаємо  ключу list дефолтне значення в разі його відсутності в обєкту.
+//Дефолтне значення додаємо перед тим як розпарсити обєкт!!!!
+// function createContact(parselcontact) {
+//   return {
+//     createAt: new Date(), // створюємо поточний час
+//     id: generetedId(),
+//     list: 'defolt',
+//     ...parselcontact,
+//   };
+// }
+// function generetedId() {
+//   return '_' + Math.random().toString(36).substr(2, 9);
+// } //стволи функцію, яка генерує id, та викликаємо іі в функціі createContact(parselcontact)
+// console.log(
+//   createContact({
+//     name: 'Olga',
+//     email: 'chalayaolga22@gmail.com',
+//     list: 'friends',
+//   })
+// );
+// console.log(
+//   createContact({
+//     name: 'Polli',
+//     email: 'polli22@gmail.com',
+//   })
+// );
+
+//_____________________________________________________________________
+//Exempl 5
+//Напиши функцію ,яка би повертала новий обєкт з властивістю fullName замість
+//firstName та lastName
+//Досттаємо ті властивості які нам потріюні і рестом збираємо решту
+function transformUserName({ firstName, lastMame, ...props }) {
+  return {
+    fullname: `${firstName} ${lastMame}`,
+    ...props,
+  };
 }
-console.log(calcBMI({ weight: 65, height: 1.8 })); //72.2
+
+console.log(
+  transformUserName({
+    id: 1,
+    email: 'chalayaolga22@gmail.com',
+    firstName: 'Olga',
+    lastMame: 'Chala',
+  })
+);
